@@ -12,10 +12,10 @@ npm install
 npm run dev
 
 # build for production with minification
-npm run build
+npm run build:prod
 
-# build for production and view the bundle analyzer report
-npm run build --report
+# build for buildtest with minification
+npm run build:test
 {{#unit}}
 
 # run unit tests

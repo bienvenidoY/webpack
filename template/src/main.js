@@ -7,8 +7,15 @@ import App from './App'
 {{#router}}
 import router from './router'
 {{/router}}
+{{#vuex}}
+import store from './store/index'
+{{/vuex}}
 
-Vue.config.productionTip = false
+/* 生产环境 */
+if(process.env.NODE_ENV === 'production'){
+  Vue.config.productionTip = false  //关闭警告
+  Vue.config.devtools = false  //vue-devtools
+}
 
 /* eslint-disable no-new */
 new Vue({
@@ -16,6 +23,9 @@ new Vue({
   {{#router}}
   router,
   {{/router}}
+  {{#vuex}}
+  store,
+  {{/vuex}}
   {{#if_eq build "runtime"}}
   render: h => h(App)
   {{/if_eq}}

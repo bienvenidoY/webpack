@@ -13,9 +13,10 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const env = {{#if_or unit e2e}}process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
-  : {{/if_or}}require('../config/prod.env')
+  : {{/if_or}}process.env.NODE_ENV === 'production' ? require('../config/prod.env') : require('../config/buildtest.env')
 
-const webpackConfig = merge(baseWebpackConfig, {
+
+  const webpackConfig = merge(baseWebpackConfig, {
   module: {
     rules: utils.styleLoaders({
       sourceMap: config.build.productionSourceMap,
@@ -37,7 +38,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     new UglifyJsPlugin({
       uglifyOptions: {
         compress: {
-          warnings: false
+          warnings: false, // 去除warning警告
+          pure_funcs: process.env.NODE_ENV === 'production' ? ['console.log'] : [], // 配置发布时，不被打包的函数
+          // drop_debugger: true, // 发布时去除debugger
+          // drop_console: true // 发布时去除console
         }
       },
       sourceMap: config.build.productionSourceMap,
@@ -48,7 +52,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       filename: utils.assetsPath('css/[name].[contenthash].css'),
       // Setting the following option to `false` will not extract CSS from codesplit chunks.
       // Their CSS will instead be inserted dynamically with style-loader when the codesplit chunk has been loaded by webpack.
-      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`, 
+      // It's currently set to `true` because we are seeing that sourcemaps are included in the codesplit bundle as well when it's `false`,
       // increasing file size: https://github.com/vuejs-templates/webpack/issues/1110
       allChunks: true,
     }),
