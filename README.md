@@ -20,6 +20,7 @@ $ npm run dev
 ### Fork It And Make Your Own
 
 You can fork this repo to create your own boilerplate, and use it with `vue-cli`:
+
 **自己模板使用这条命令来构建自己的项目**
 ``` bash
 vue init username/repo my-project
@@ -42,7 +43,7 @@ vue init username/repo my-project
 
 更重要的是，实际上开发环境和生产环境的配置文件的绝大部分都是一致的，对于这一致的部分来说，我们坚决要消除冗余，否则后续维护起来不仅麻烦，而且还容易出错。
 
-##模板改造
+## 模板改造
 
 - 说明
 1. `npm run  dev`         开发环境
