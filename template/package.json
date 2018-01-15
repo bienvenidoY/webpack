@@ -20,7 +20,7 @@
     "test": "{{#unit}}npm run unit{{/unit}}{{#unit}}{{#e2e}} && {{/e2e}}{{/unit}}{{#e2e}}npm run e2e{{/e2e}}",
     {{/if_or}}
     {{#lint}}
-    "lint": "eslint --ext .js,.vue src{{#unit}} test/unit/specs{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
+    "lint": "eslint --ext .js,.vue src{{#unit}} test/unit{{/unit}}{{#e2e}} test/e2e/specs{{/e2e}}",
     {{/lint}}
     "build:prod": "cross-env NODE_ENV=production node build/build.js",
     "build:test": "cross-env NODE_ENV=test node build/build.js"
@@ -32,8 +32,8 @@
   },
   "devDependencies": {
     {{#lint}}
-    "babel-eslint": "^7.1.1",
-    "eslint": "^3.19.0",
+    "babel-eslint": "^8.2.1",
+    "eslint": "^4.15.0",
     "eslint-friendly-formatter": "^3.0.0",
     "eslint-loader": "^1.7.1",
     "eslint-plugin-vue": "^4.0.0",
@@ -54,7 +54,7 @@
     "babel-jest": "^21.0.2",
     "babel-plugin-dynamic-import-node": "^1.2.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
-    "jest": "^21.2.0",
+    "jest": "^22.0.4",
     "jest-serializer-vue": "^0.3.0",
     "vue-jest": "^1.0.2",
     {{/if_eq}}
